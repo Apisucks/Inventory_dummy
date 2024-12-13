@@ -7,11 +7,10 @@ import (
 )
 
 func ListHandler(rw http.ResponseWriter, r *http.Request) {
-	var obj models.Object
-	if err := json.NewDecoder(r.Body).Decode(&obj); err != nil {
-		http.Error(rw, "failed to unmarshal the request", http.StatusBadRequest)
+
+	if err := json.NewEncoder(rw).Encode(models.Objects); err != nil {
+		http.Error(rw, "failed to marshal the response", http.StatusInternalServerError)
 		return
 	}
-	models.Objects = append(models.Objects, obj)
-	rw.WriteHeader(http.StatusOK)
+
 }

@@ -12,7 +12,8 @@ func main() {
 
 	router := mux.NewRouter()
 
-	router.HandleFunc("/inventory/list", handlers.ListHandler)
+	router.HandleFunc("/inventory/add", handlers.AddHandler).Methods(http.MethodPost)
+	router.HandleFunc("/inventory/list", handlers.ListHandler).Methods(http.MethodGet)
 	server := http.Server{
 		Addr:    ":9898",
 		Handler: router,
