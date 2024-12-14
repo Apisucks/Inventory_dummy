@@ -1,5 +1,5 @@
 FROM ubuntu:latest
 WORKDIR /app
-COPY ./service /app/bin
-RUN ls /app/bin
+COPY ./build/service /app/bin
+COPY ./build/config.json /app/config.json
 ENTRYPOINT ["/app/bin"]
