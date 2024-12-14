@@ -1,5 +1,6 @@
-# clean:
-# 	rm -f ./build/*
+clean:
+	rm -fr ./service-image/build
 
 compile:
-	go build -o ./service-image/service main.go 
+	go build -o ./service-image/build/service main.go 
+	cp config.json ./service-image/build/
