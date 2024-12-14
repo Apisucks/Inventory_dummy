@@ -1,0 +1,19 @@
+GET http://localhost:9898/inventory/v1/list
+
+###
+
+POST http://localhost:9898/inventory/v1/add
+
+{"name": "Book", "qty":5, "price": 89.99}
+
+
+###
+
+POST http://localhost:9898/inventory/v1/add
+
+{"name": "Table", "qty":3, "price": 899.99}
+
+
+###
+
+GET http://localhost:9898/inventory/v1/list
