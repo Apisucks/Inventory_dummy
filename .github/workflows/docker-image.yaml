@@ -11,6 +11,9 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+    var:
+      image_version: $(date +%s)
+      
     steps:
     - uses: actions/checkout@v4
 
@@ -32,7 +35,7 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
     - name: Build the Docker image
-      run: docker build --tag ${{ secrets.DOCKERHUB_USERNAME }}/my_inv_app:$(date +%s) ./service-image/
+      run: docker build --tag ${{ secrets.DOCKERHUB_USERNAME }}/my_inv_app:${{image_version}} ./service-image/
 
     - name: Push the docker image
-      run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/my_inv_app:latest
+      run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/my_inv_app:${{image_version}}
