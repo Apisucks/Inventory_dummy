@@ -7,13 +7,15 @@ on:
   push:
     branches: [ "alpine-build" ]
 
+env:
+  image_version: $(date +%s)
+
 jobs:
 
   build:
     runs-on: ubuntu-latest
-    var:
-      image_version: $(date +%s)
-      
+    
+
     steps:
     - uses: actions/checkout@v4
 
