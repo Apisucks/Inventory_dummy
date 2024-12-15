@@ -25,5 +25,14 @@ jobs:
     - name: Build
       run: make compile
 
-    # - name: Build the Docker image
-    #   run: docker build --tag my_inv_app:$(date +%s) ./service-image/
+    # - name: Login to Docker Hub
+    #   uses: docker/login-action@v3
+    #   with:
+    #     username: ${{ vars.DOCKERHUB_USERNAME }}
+    #     password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Build the Docker image
+      run: docker build --tag ${{ vars.DOCKERHUB_USERNAME }}/my_inv_app:$(date +%s) ./service-image/
+
+    # - name: Push the docker image
+    #   run: docker push ${{ vars.DOCKERHUB_USERNAME }}/my_inv_app:latest
