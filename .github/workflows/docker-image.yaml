@@ -7,8 +7,8 @@ on:
   push:
     branches: [ "alpine-build" ]
 
-env:
-  image_version: $(date +%s)
+# env:
+#   image_version: `date +%s`
 
 jobs:
 
@@ -20,7 +20,7 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: Test env
-      run: echo "$image_version $(image_version)"
+      run: echo "$image_version"
 
     - name: Set up Go
       uses: actions/setup-go@v4
@@ -40,7 +40,13 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
     - name: Build the Docker image
-      run: docker build --tag ${{ secrets.DOCKERHUB_USERNAME }}/my_inv_app:$(image_version) ./service-image/
+      run: docker build --tag ${{ secrets.DOCKERHUB_USERNAME }}/my_inv_app:$(date +%y%m%d) ./service-image/
 
     - name: Push the docker image
-      run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/my_inv_app:$(image_version)
+      run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/my_inv_app:$(date +%y%m%d%M)
+
+    # - name: Build the Docker image
+    #   run: docker build --tag ${{ secrets.DOCKERHUB_USERNAME }}/my_inv_app:$image_version ./service-image/
+
+    # - name: Push the docker image
+    #   run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/my_inv_app:$image_version
