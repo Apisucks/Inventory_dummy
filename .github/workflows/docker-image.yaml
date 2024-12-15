@@ -43,7 +43,7 @@ jobs:
       run: docker build --tag ${{ secrets.DOCKERHUB_USERNAME }}/my_inv_app:$(date +%y%m%d) ./service-image/
 
     - name: Push the docker image
-      run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/my_inv_app:$(date +%y%m%d%M)
+      run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/my_inv_app:$(date +%y%m%d)
 
     # - name: Build the Docker image
     #   run: docker build --tag ${{ secrets.DOCKERHUB_USERNAME }}/my_inv_app:$image_version ./service-image/
