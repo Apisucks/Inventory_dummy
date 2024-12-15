@@ -19,6 +19,9 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Test env
+      run: echo "$image_version $(image_version)"
+
     - name: Set up Go
       uses: actions/setup-go@v4
       with:
@@ -37,7 +40,7 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
     - name: Build the Docker image
-      run: docker build --tag ${{ secrets.DOCKERHUB_USERNAME }}/my_inv_app:$image_version ./service-image/
+      run: docker build --tag ${{ secrets.DOCKERHUB_USERNAME }}/my_inv_app:$(image_version) ./service-image/
 
     - name: Push the docker image
-      run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/my_inv_app:$image_version
+      run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/my_inv_app:$(image_version)
